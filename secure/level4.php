@@ -6,9 +6,18 @@ $new_surname = $_POST['new-surname'];
 $new_country = $_POST['new-country'];
 $new_work = $_POST['new-work'];
 $new_danger = $_POST['new-danger'];
+if($new_danger > 10){
+	$new_danger = 10;
+} else if($new_danger < 1){
+	$new_danger = 1;
+}
 if(isset($_POST['new-add'])){
 	$main->query("INSERT INTO `profile` (`name`, `surname`, `country`, `work`, `danger`) 
         	VALUES ('$new_name', '$new_surname', '$new_country', '$new_work', '$new_danger')");
+	header("Location: ./level4.php");
+}
+if(isset($POST['new-delete'])){
+	$main->query("DELETE FROM `profile` WHERE `name` = '$new_name' and `surname` = '$new_surname' and `work` = '$new_work'");
 	header("Location: ./level4.php");
 }
 $main->close();
@@ -21,16 +30,25 @@ $main->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<style>
+		.form__btn{
+			margin: 0% 0.5%;
+		}
+		.form__btn:last-child{
+			background-color: red;
+			color: #fff;
+		}
+	</style>
 </head>
 <body>
-<main>
+<main class="container">
 	<? if($_COOKIE['first'] != '' && $_COOKIE['second'] != '' && $_COOKIE['third'] != ''): ?>
 	<?php
 	$main= new mysqli("localhost", "root", "", "dodiki");
 	$reserv = new mysqli("localhost", "root", "", "reserv");
 
 	if($result = $main->query("SELECT * FROM `profile`")){
-    	$mysql2->query("TRUNCATE TABLE  `profile`"); // Очищення тіблиці
+    	$reserv->query("TRUNCATE TABLE  `profile`"); // Очищення тіблиці
     	$rowsCount = $result->num_rows; // Кількість отриманих рядків
 
 	
@@ -74,6 +92,7 @@ $reserv->close();
 		<input type="number" name="new-danger" placeholder="Danger: ">
 		<button type="submit" class="form__btn" name="new-add">Add</button>
 	</form>
+	<button type="submit" class="form__btn" name="new-delete">Delete</button>
 </div>
 	<? else: ?>
         <head>
