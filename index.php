@@ -8,15 +8,13 @@
 </head>
 <body>
     <?php
-    $file = '../data/progress.txt';
-    $fd = fopen($file, 'w');
     /*if($_COOKIE['quit'] == ''){
         require "data/check-ip.php";
-        if($IPcountry == "Ukraine" || $IPcountry == "Czech Republic") {
-            header("Location: ");
+        if(/*$IPcountry == "Ukraine" && $IPcity == "Kyiv" || $IPcountry == "Ukraine && $IPcity == "Rokytne"*//* $IPcity == "Brno" || $IPcity == "Ostopovice") {
+            header("Location: ./secure/level2.php");
         } else {
+			exit();
             header("Location: https://pravyysektor.info/");
-            exit();
             setcookie("quit", true, time()+3600*24*365);
         }
     } else{
@@ -24,8 +22,6 @@
     }*/
     header("Location: ./secure/level2.php");
     setcookie("first", true, time()+3600, "/");
-    fwrite($fd, "complete1");
-    fclose($fd);
     ?>
 </body>
 </html>

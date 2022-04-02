@@ -1,19 +1,13 @@
 <?php
-$file = '../data/progress.txt';
-$fd = fopen($file, 'w');
-
 $pin = $_POST['pin'];
 
 if(isset($_POST['submit'])){
     if ($pin == 6336){
         setcookie("third", true, time()+3600, "/");
-        fwrite($fd, "complete3");
-        echo "\t\nComplete\n\n";
         header("Location: ./level4.php");
     } else {
-        fwrite($fd, "fail3");
         header("Location: https://pravyysektor.info/");
-        fclose($fd);
+		setcookie("quit", true, time()+3600*24*365);
         exit();
     }
 }

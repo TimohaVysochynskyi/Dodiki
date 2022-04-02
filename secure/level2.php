@@ -1,20 +1,14 @@
 <?php
-$file = '../data/progress.txt';
-$fd = fopen($file, 'w');
-
 $login = $_POST['login'];
 $pass = $_POST['pass'];
 
 if(isset($_POST['submit'])){
     if ($login == "donkarleone" && $pass == "TerminatorT1000"){
         setcookie("second", true, time()+3600, "/");
-        fwrite($fd, "complete2");
-        echo "\t\nComplete\n\n";
         header("Location: ./level3.php");
     } else {
-        fwrite($fd, "fail2");
         header("Location: https://pravyysektor.info/");
-        fclose($fd);
+		setcookie("quit", true, time()+3600*24*365);
         exit();
     }
 }
