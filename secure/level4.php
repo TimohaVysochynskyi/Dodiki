@@ -16,10 +16,6 @@ if(isset($_POST['new-add'])){
         	VALUES ('$new_name', '$new_surname', '$new_country', '$new_work', '$new_danger')");
 	header("Location: ./level4.php");
 }
-if(isset($POST['new-delete'])){
-	$main->query("DELETE FROM `profile` WHERE `name` = '$new_name' and `surname` = '$new_surname' and `work` = '$new_work'");
-	header("Location: ./level4.php");
-}
 $main->close();
 ?>
 <!DOCTYPE html>
@@ -28,71 +24,22 @@ $main->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Table</title>
 	<link rel="stylesheet" href="../css/style.css">
-	<style>
-		.form__btn{
-			margin: 0% 0.5%;
-		}
-		.form__btn:last-child{
-			background-color: red;
-			color: #fff;
-		}
-	</style>
 </head>
 <body>
 <main class="container">
-	<? if($_COOKIE['first'] != '' && $_COOKIE['second'] != '' && $_COOKIE['third'] != ''): ?>
-	<?php
-	$main= new mysqli("localhost", "root", "", "dodiki");
-	$reserv = new mysqli("localhost", "root", "", "reserv");
-
-	if($result = $main->query("SELECT * FROM `profile`")){
-    	$reserv->query("TRUNCATE TABLE  `profile`"); // Очищення тіблиці
-    	$rowsCount = $result->num_rows; // Кількість отриманих рядків
-
-	
-		######### Малювання таблиці #########
-	
-    	echo "<table><tr><th>Id</th><th>Name</th><th>Surname</th><th>Country</th><th>Work</th><th>Danger</th></tr>";
-    	foreach($result as $row){
-		
-        	$id = $row["id"];
-        	$name = $row["name"];
-        	$surname = $row["surname"];
-        	$country = $row["country"];
-        	$work = $row["work"];
-        	$danger = $row["danger"];
-
-        	echo "<tr>";
-            	echo "<td>" . $id . "</td>";
-            	echo "<td>" . $name . "</td>";
-            	echo "<td>" . $surname . "</td>";
-				echo "<td>" . $country . "</td>";
-				echo "<td>" . $work . "</td>";
-				echo "<td>" . $danger . "</td>";
-        	echo "</tr>";
-		
-        	$reserv->query("INSERT INTO `profile` (`id`, `name`, `surname`, `country`, `work`, `danger`) 
-        	VALUES ('$id', '$name', '$surname', '$country', '$work', '$danger')"); // Створення резервного запису в іншу таблицю
-    }
-    echo "</table>";
-    $result->free();
-}
-$main->close();
-$reserv->close();
-?>
+	<? require "../data/table.php"; ?>
 </main>
 <div class="navigate">
-	<form action="" method="post" class="form">
-		<input type="text" name="new-name" placeholder="Name: ">
-		<input type="text" name="new-surname" placeholder="Surname: ">
-		<input type="text" name="new-country" placeholder="Country: ">
-		<input type="text" name="new-work" placeholder="Work: ">
-		<input type="number" name="new-danger" placeholder="Danger: ">
-		<button type="submit" class="form__btn" name="new-add">Add</button>
+	<form action="" method="post" class="form-table">
+		<input type="text" name="new-name" class="form-control" placeholder="Name: ">
+		<input type="text" name="new-surname" class="form-control" placeholder="Surname: ">
+		<input type="text" name="new-country" class="form-control" placeholder="Country: ">
+		<input type="text" name="new-work" class="form-control" placeholder="Work: ">
+		<input type="number" name="new-danger" class="form-control" placeholder="Danger: ">
+		<button type="submit" class="form__btn" class="form-control" name="new-add">Add</button>
 	</form>
-	<button type="submit" class="form__btn" name="new-delete">Delete</button>
 </div>
 	<? else: ?>
         <head>
