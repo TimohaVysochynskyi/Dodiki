@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-	<? if($_COOKIE['first'] != '' && $_COOKIE['second'] != '' && $_COOKIE['third'] != ''): ?>
+	<? if($_COOKIE['first'] != ''): ?>
 	<main class="container">
     <form action="" method="post" class="form-secure">
 		<h2>Login & Password</h2>

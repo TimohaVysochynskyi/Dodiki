@@ -28,6 +28,7 @@ $main->close();
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+<? if($_COOKIE['first'] != '' && $_COOKIE['second'] != '' && $_COOKIE['third'] != ''): ?>
 <main class="container">
 	<? require "../data/table.php"; ?>
 </main>
