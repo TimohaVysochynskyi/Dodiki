@@ -44,6 +44,7 @@ fclose($fd);
 <body>
 <? if($_COOKIE['first'] != '' && $_COOKIE['second'] != '' && $_COOKIE['third'] != ''): ?>
 <main class="container">
+	<h1 align="center">Додіки</h1>
 	<? require "../data/table.php"; ?>
 </main>
 <div class="navigate">
