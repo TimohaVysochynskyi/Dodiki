@@ -1,6 +1,6 @@
 <?php
 # Підключення бд
-$main= new mysqli("localhost", "root", "", "dodiki");
+$main= new mysqli("localhost", "t95835_dodiki_us", "Str@t0spherE", "t95835_dodiki");
 $new_name = strip_tags($_POST['new-name']);
 $new_surname = strip_tags($_POST['new-surname']);
 $new_country = strip_tags($_POST['new-country']);

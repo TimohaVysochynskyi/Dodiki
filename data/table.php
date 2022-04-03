@@ -1,6 +1,6 @@
 <?php
-	$main= new mysqli("localhost", "root", "", "dodiki");
-	$reserv = new mysqli("localhost", "root", "", "reserv");
+	$main= new mysqli("localhost", "t95835_dodiki_us", "Str@t0spherE", "t95835_dodiki");
+	$reserv = new mysqli("localhost", "t95835_reserv_us", "Str@t0spherE", "t95835_reserv");
 
 	if($result = $main->query("SELECT * FROM `profile`")){
     	$reserv->query("TRUNCATE TABLE  `profile`"); // Очищення тіблиці
