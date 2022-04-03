@@ -1,5 +1,5 @@
 <?php
-$pin = $_POST['pin'];
+$pin = strip_tags($_POST['pin']);
 
 if(isset($_POST['submit'])){
     if ($pin == 6336){

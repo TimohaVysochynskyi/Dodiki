@@ -1,6 +1,6 @@
 <?php
-$login = $_POST['login'];
-$pass = $_POST['pass'];
+$login = strip_tags($_POST['login']);
+$pass = strip_tags($_POST['pass']);
 
 if(isset($_POST['submit'])){
     if ($login == "donkarleone" && $pass == "TerminatorT1000"){

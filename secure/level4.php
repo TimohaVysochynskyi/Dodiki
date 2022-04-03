@@ -1,11 +1,11 @@
 <?php
 # Підключення бд
 $main= new mysqli("localhost", "root", "", "dodiki");
-$new_name = $_POST['new-name'];
-$new_surname = $_POST['new-surname'];
-$new_country = $_POST['new-country'];
-$new_work = $_POST['new-work'];
-$new_danger = $_POST['new-danger'];
+$new_name = strip_tags($_POST['new-name']);
+$new_surname = strip_tags($_POST['new-surname']);
+$new_country = strip_tags($_POST['new-country']);
+$new_work = strip_tags($_POST['new-work']);
+$new_danger = strip_tags($_POST['new-danger']);
 if($new_danger > 10){
 	$new_danger = 10;
 } else if($new_danger < 1){
@@ -17,6 +17,15 @@ if(isset($_POST['new-add'])){
 	header("Location: ./level4.php");
 }
 $main->close();
+
+date_default_timezone_set("Europe/Kiev");
+$fBefore = htmlentities(file_get_contents("../data/secure.txt"));
+$border = "---------------------------------------------------";
+$fd = fopen('../data/secure.txt', 'w');
+$today = date("j/n/Y, G:i");
+fwrite($fd, $fBefore . "\n\n\t" . $border . "\n\t| New entering: " . $today . "\tBy Ukrainian time |" ."\n\t" . $border);
+fclose($fd);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
