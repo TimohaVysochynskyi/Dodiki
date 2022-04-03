@@ -14,7 +14,7 @@
 		
         	$id = $row["id"];
         	$name = $row["name"];
-        	$surname = .$row["surname"];
+        	$surname = $row["surname"];
         	$country = $row["country"];
         	$work = $row["work"];
         	$danger = $row["danger"];

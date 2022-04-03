@@ -15,6 +15,11 @@ if(isset($_POST['new-add'])){
 	$main->query("INSERT INTO `profile` (`name`, `surname`, `country`, `work`, `danger`) 
         	VALUES ('$new_name', '$new_surname', '$new_country', '$new_work', '$new_danger')");
 	header("Location: ./level4.php");
+	$fBefore = htmlentities(file_get_contents("../data/progress.txt"));
+	$fd = fopen('../data/progress.txt', 'w');
+	$today = date("G:i, j/n/Y");
+	fwrite($fd, $fBefore . "\n\nNew person added at ".$today."\n\tName: ".$new_name."\n\tSurname: ".$new_surname."\n\tCountry: ".$new_country."\n\tWork: ".$new_work."\n\tDanger: ".$new_danger);
+	fclose($fd);
 }
 $main->close();
 
